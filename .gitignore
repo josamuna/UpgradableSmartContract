@@ -5,10 +5,12 @@ coverage
 coverage.json
 typechain
 typechain-types
+secrets.json
 
 # Hardhat files
 cache
 artifacts
+secrets.json
 
 
 node_modules
@@ -17,6 +19,7 @@ coverage
 coverage.json
 typechain
 typechain-types
+secrets.json
 
 # Hardhat files
 cache
