@@ -1,0 +1,27 @@
+{
+  "name": "upgradablesmartcontract",
+  "version": "1.0.0",
+  "description": "A simple project with implementation of Proxy Pattern",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josamuna/UpgradableSmartContract.git"
+  },
+  "author": "Josue Isamuna Nkembo <josamuna2009@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/josamuna/UpgradableSmartContract/issues"
+  },
+  "homepage": "https://github.com/josamuna/UpgradableSmartContract#readme",
+  "dependencies": {
+    "@nomiclabs/hardhat-etherscan": "^3.1.6",
+    "@openzeppelin/hardhat-upgrades": "^1.22.1",
+    "hardhat": "^2.12.7"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.1"
+  }
+}
