@@ -183,7 +183,7 @@ Transferred ownership of ProxiAdmin to: 0x45aC0f1607D1CF80e7e1Ce6Beb349428E86745
 npx hardhat compile
 ```
 
-16. Write test cases for ``JosamTokenV2` and `JosamTokenV2.proxy` (Where we deploy **V1 Proxy contract** and **V2 Proxy using V1 upgrade Proxy address**), then run it with this command:
+16. Write test cases for `JosamTokenV2` and `JosamTokenV2.proxy` (Where we deploy **V1 Proxy contract** and **V2 Proxy using V1 upgrade Proxy address**), then run it with this command:
 
 ```
 npx hardhat test
