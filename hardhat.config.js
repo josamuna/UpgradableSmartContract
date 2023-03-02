@@ -14,21 +14,20 @@ module.exports = {
       enabled: true,
       runs: 200,
     },
-    defaultNetwork: "hardhat",
-    networks: {
-      hardhat: {
-        chainId: 1337,
-      },
-      goerli: {
-        chainId: 5,
-        url: alchemyAPIKeyGoerli, // From Alchemy
-        accounts: [deployerWalletPrivateKey], // From MetaMask account
-        gas: 10000000,
-      },
+  },
+  defaultNetwork: "hardhat",
+  networks: {
+    hardhat: {
+      chainId: 1337,
     },
-    etherscan: {
-      apiKey: etherscanAPIKey, // From Etherscan API
+    goerli: {
+      url: alchemyAPIKeyGoerli, // From Alchemy
+      accounts: [deployerWalletPrivateKey], // From MetaMask account
+      gas: 10000000,
     },
+  },
+  etherscan: {
+    apiKey: etherscanAPIKey, // From Etherscan API
   },
   paths: {
     sources: "./contracts",

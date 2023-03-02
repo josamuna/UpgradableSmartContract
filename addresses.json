@@ -1,0 +1,8 @@
+{
+    "proxyAddress":"0x3f27585a5e0C84bE5D81C08E468325c43A40191b",
+    "implementationAddress":"0x646b16f440923bbab111be6971aa36be2d5f0311",
+    "gnosisMultiSignAddress":"0x7c3c8Dd884263Fe20545579E7A954A9E568058C3",
+    "timelockAddress":"0x45aC0f1607D1CF80e7e1Ce6Beb349428E8674500",
+    "proxyAdminAddress":"0x8b7b7DC5911c3C889E5913A09CCbEdC7C22cdA83",
+    "JosamTokenV2/Implementation V2":""
+}
