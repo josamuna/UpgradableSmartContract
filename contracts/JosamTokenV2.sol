@@ -7,9 +7,8 @@ contract JosamTokenV2 {
     string private _name;
     string private _symbol;
     mapping(address => uint256) balances;
-    mapping(address => mapping(address => uint256)) private _allowance; // To make able another address to use on behalf of another
-    address private _owner;
     bool private _initialized;
+    mapping(address => mapping(address => uint256)) private _allowance; // To make able another address to use on behalf of another
 
     event Burn(address account, address contractAddress, uint256 amount);
     event Mint(address account, address contractAddress, uint256 amount);
@@ -18,12 +17,11 @@ contract JosamTokenV2 {
     event OwnershipTransfert(address oldOwner, address newOwner);
     event Approval(address accountOwner, address spender, uint256 amount);
 
-    // Create constructor by passing Token name and Symbol, then pre-mint 1 000 000 Tokens
+    // Create constructor by passing Token name and Symbol, then pre-mint 1 000 000 Tokens.
     function initialize(string memory _tName, string memory _tSymbol) public {
         require(!_initialized, "Contract insteance has already initialized.");
         _name = _tName;
         _symbol = _tSymbol;
-        _owner = payable(msg.sender); // The owner of the contract
 
         _totalSupply += 1000000;
         balances[msg.sender] += 1000000; // Update the balance of the owner.
@@ -161,14 +159,5 @@ contract JosamTokenV2 {
     // Get Account balance.
     function balanceOf(address account) public view returns (uint256) {
         return balances[account];
-    }
-
-    // Only owner should execute some tasks (Mint Token, burn Token, etc.).
-    modifier onlyOwner(address payable _account) {
-        require(
-            _account == _owner,
-            "ERC20: You don't have permission to execute this task."
-        );
-        _;
     }
 }

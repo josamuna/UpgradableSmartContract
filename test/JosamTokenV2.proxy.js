@@ -1,16 +1,28 @@
 const { ethers } = require("hardhat");
 const { expect } = require("chai");
 
+let JosamTokenV1;
 let JosamTokenV2;
+let josamtokenV1;
 let josamtokenV2;
 let accounts;
 let txFees;
 
-describe("ERC20 Josam Token version 2.", function () {
+describe("Test ERC20 Josam Token proxy version 2.", function () {
   before(async function () {
+    JosamTokenV1 = await ethers.getContractFactory("JosamToken");
     JosamTokenV2 = await ethers.getContractFactory("JosamTokenV2");
-    josamtokenV2 = await JosamTokenV2.deploy();
-    await josamtokenV2.deployed();
+
+    josamtokenV1 = await upgrades.deployProxy(
+      JosamTokenV1,
+      ["Josam Token", "JTK"],
+      { initializer: "initialize" }
+    ); // Upgrade first contract version 1
+    josamtokenV2 = await upgrades.upgradeProxy(
+      josamtokenV1.address,
+      JosamTokenV2
+    ); // Upgrade Contract V2 using Upgrade V1 contract address
+
     accounts = await ethers.getSigners();
     txFees = ethers.utils.parseUnits("1", "gwei");
   });
@@ -22,7 +34,7 @@ describe("ERC20 Josam Token version 2.", function () {
     const decimals = 18;
 
     // Initialize the contract instead of using constroctor (To follow Openzeppelin Pattern)
-    await josamtokenV2.initialize("Josam Token", "JTK");
+    // await josamtokenV2.initialize("Josam Token", "JTK");
 
     let result = await josamtokenV2.totalSupply(); // Get the totalSupply from contract.
     expect(result).to.equal(totalSupply);

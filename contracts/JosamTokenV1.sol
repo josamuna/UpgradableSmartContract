@@ -7,7 +7,6 @@ contract JosamToken {
     string private _name;
     string private _symbol;
     mapping(address => uint256) balances;
-    address payable private _owner;
     bool private _initialized;
 
     // Create constructor by passing Token name and Symbol, then pre-mint 1 000 000 Tokens
@@ -25,10 +24,9 @@ contract JosamToken {
         require(!_initialized, "Contract instance has already initialized.");
         _name = _tName;
         _symbol = _tSymbol;
-        _owner = payable(msg.sender); // The owner of the contract
 
         _totalSupply += 1000000;
-        balances[_owner] += 1000000; // Update the balance of the owner.
+        balances[msg.sender] += 1000000; // Update the balance of the owner.
         _initialized = true;
     }
 
@@ -55,10 +53,5 @@ contract JosamToken {
     // Get Account balance.
     function balanceOf(address account) public view returns (uint256) {
         return balances[account];
-    }
-
-    // Get the owner.
-    function owner() public view returns (address) {
-        return _owner;
     }
 }
