@@ -1,7 +1,7 @@
 async function main() {
   // Proxy address - Not the Admin Proxy Address (Timelock Controller Address).
   // First deployed contract of V1.
-  const proxyAddress = "0x011f85C35A23429b1b5d266c5eD99E29c6C6b019";
+  const proxyAddress = "0xb2ad6367DAC6133C8134B109fE3c451d93915e66";
 
   const JosamTokenV2 = await ethers.getContractFactory("JosamTokenV2");
   console.log("Preparing upgrade...");

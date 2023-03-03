@@ -1,6 +1,6 @@
 async function main() {
   // The new owner should be the Timelock contract address
-  const newOwnerOfTheProxyAdmin = "0x45aC0f1607D1CF80e7e1Ce6Beb349428E8674500";
+  const newOwnerOfTheProxyAdmin = "0xea44fafc675d1890c5A978b2b4A3303F08A97883";
 
   console.log("Transferring ownership of ProxyAdmin");
   // The owner of the ProxyAdmin can upgrade contracts

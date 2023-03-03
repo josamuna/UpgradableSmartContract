@@ -93,37 +93,36 @@ npx hardhat run scripts/deploy.js --network goerli
 
 > This ProxyAddress will keep track of state variables and help to separate state (Proxy Contract) from the logic (Implementation Contract): **Link the Proxy with Implementation**.
 
-6. We can proceed with the verification contract using the deployed address directly from [goerli ethercan](https://goerli.etherscan.io/). For this project, the full link with address was [this](https://goerli.etherscan.io/address/0x011f85C35A23429b1b5d266c5eD99E29c6C6b019).
+6. We can proceed with the verification contract using the deployed address directly from [goerli ethercan](https://goerli.etherscan.io/). For this project, the full link with address was [this](https://goerli.etherscan.io/address/0xb2ad6367DAC6133C8134B109fE3c451d93915e66).
 
 - Navigate to **contract tab**.
 - Chooce **More Options**.
 - Click on **Is this is a proxy?**.
 - Click on **Verify**.
-- Copy the **Implementation address** and save it inside the `addresses.json file`.
+- Copy the **Implementation address** and save it inside the `addresses.json file` (`proxyAddress`).
 
 **If the verification failed, we can use this command (This was the case and this test was made later, after setting up ProxyAdmin)**:
 
 ```
-npx hardhat verify --network goerli 0x011f85C35A23429b1b5d266c5eD99E29c6C6b019
+npx hardhat verify --network goerli 0xb2ad6367DAC6133C8134B109fE3c451d93915e66
 ```
 
 The result will look like:
 
 ```
-Verifying implementation: 0x7B945033c0a137A567F78203fb7537907AAFB487
+Verifying implementation: 0x342e79E7AF6b67831Baa74E7e63156F70B50aa88
 Nothing to compile
 Successfully submitted source code for contract
-contracts/JosamTokenV1.sol:JosamToken at 0x7B945033c0a137A567F78203fb7537907AAFB487
+contracts/JosamTokenV1.sol:JosamToken at 0x342e79E7AF6b67831Baa74E7e63156F70B50aa88
 for verification on the block explorer. Waiting for verification result...
 
-Successfully verified contract JosamToken on Etherscan.
-https://goerli.etherscan.io/address/0x7B945033c0a137A567F78203fb7537907AAFB487#code
-Verifying proxy: 0x011f85C35A23429b1b5d266c5eD99E29c6C6b019
-Contract at 0x011f85C35A23429b1b5d266c5eD99E29c6C6b019 already verified.
-Linking proxy 0x011f85C35A23429b1b5d266c5eD99E29c6C6b019 with implementation
+Implementation 0x342e79E7AF6b67831Baa74E7e63156F70B50aa88 already verified.
+Verifying proxy: 0xb2ad6367DAC6133C8134B109fE3c451d93915e66
+Contract at 0xb2ad6367DAC6133C8134B109fE3c451d93915e66 already verified.
+Linking proxy 0xb2ad6367DAC6133C8134B109fE3c451d93915e66 with implementation
 Successfully linked proxy to implementation.
-Verifying proxy admin: 0x8b7b7DC5911c3C889E5913A09CCbEdC7C22cdA83
-Contract at 0x8b7b7DC5911c3C889E5913A09CCbEdC7C22cdA83 already verified.
+Verifying proxy admin: 0x2532ee63244d31a53D0Cc042aF86777A0CbB027e
+Contract at 0x2532ee63244d31a53D0Cc042aF86777A0CbB027e already verified.
 
 Proxy fully verified.
 ```
@@ -132,7 +131,7 @@ Proxy fully verified.
 8. Create a multisignature wallet with [Gnosis safe](https://safe.global/), and play the role of `proposer` and `executor`. This will allow multisign transaction and call timelock to wait for the delay to upgrade `JosamTokenV1` to `JosamTokenV2`.
 
 - Connect MetaMask account used in earlier steps.
-- Provide a project name: `ProxyImplementation` and select `goerli`.
+- Provide a project name: `ProxyUpgradeImplementation` and select `goerli`.
 - Add at least one owner and give a name of each one (eg.: first, second, etc.).
 
 9. Create `arguments file` to specify time duration to execute transaction (By the contract itself), executors array and proposers array to be passed as arguments to Timelock.sol contract during deployment.
@@ -146,18 +145,18 @@ npx hardhat run scripts/deploy-timelock.js --network goerli
 12. Verify that the Timelock contract has deployed successfully by typing this command:
 
 ```
-npx hardhat verify --network goerli --constructor-args arguments.js 0x49Cdf38938b5C61eA1d1f8245a7D344379E90F26
+npx hardhat verify --network goerli --constructor-args arguments.js 0xea44fafc675d1890c5A978b2b4A3303F08A97883
 ```
 
 Result will look like this:
 
 ```
 Successfully submitted source code for contract
-contracts/Timelock.sol:TimelockController at 0x49Cdf38938b5C61eA1d1f8245a7D344379E90F26
-for verification on the block explorer. Waiting for verification result..
+contracts/Timelock.sol:TimelockController at 0xea44fafc675d1890c5A978b2b4A3303F08A97883
+for verification on the block explorer. Waiting for verification result...
 
 Successfully verified contract TimelockController on Etherscan.
-https://goerli.etherscan.io/address/0x49Cdf38938b5C61eA1d1f8245a7D344379E90F26#code
+https://goerli.etherscan.io/address/0xea44fafc675d1890c5A978b2b4A3303F08A97883#code
 ```
 
 13. inside `.openzeppelin/goerli.json` file, copy the `Admin address` inside the `addresses.json file` as `ProxyAdmin`.
@@ -171,13 +170,11 @@ The result will look like this:
 
 ```
 Transferring ownership of ProxyAdmin
-✔ 0x8731cC23eB3Fe2bd08Fd64Eecf65bD1e21E6c41E (transparent) proxy ownership transfered through admin proxy
-✔ 0x4F963F063531C4d51e0fb38e2F4575c0011B339c (transparent) proxy ownership transfered through admin proxy
-✔ 0x220cF9b775888C996B77b4bb6DCb40C8754FbB31 (transparent) proxy ownership transfered through admin proxy
-✔ 0x3f27585a5e0C84bE5D81C08E468325c43A40191b (transparent) proxy ownership transfered through admin proxy
-✔ 0x011f85C35A23429b1b5d266c5eD99E29c6C6b019 (transparent) proxy ownership transfered through admin proxy
-Transferred ownership of ProxiAdmin to: 0x45aC0f1607D1CF80e7e1Ce6Beb349428E8674500
+✔ 0xb2ad6367DAC6133C8134B109fE3c451d93915e66 (transparent) proxy ownership transfered through admin proxy
+Transferred ownership of ProxiAdmin to: 0xea44fafc675d1890c5A978b2b4A3303F08A97883
 ```
+
+> Now, the `Timelock Contract` is the new owner.
 
 ## Step 3: Phase 2
 
@@ -208,7 +205,7 @@ The result will look like this (Then copy this deployed address on **addresses.j
 
 ```
 Preparing upgrade...
-JosamTokenV2 upgrade at: 0x6784bd0Ca85B7757b4d2a34d7765259a8Ff5ec65
+JosamTokenV2 upgrade at: 0x4369a69210ca45Ff8198143f60dA3F9f45d4832d
 
 ```
 
@@ -216,7 +213,7 @@ JosamTokenV2 upgrade at: 0x6784bd0Ca85B7757b4d2a34d7765259a8Ff5ec65
 
 - Use the `ProxyAdminAddress` from earlier `Timelock` creation on [Goerli Ethercan](https://goerli.etherscan.io/).
 - Go to Contract tab, and connect MetaMask wallet.
-- Choose option 4 `upgrade` and copy `proxy address` (Our first deployed contract Address: `0x011f85C35A23429b1b5d266c5eD99E29c6C6b019`) and `Implementation address` (For JosamTokenV2 from prepare_upgradeV1.V2: `0x6784bd0Ca85B7757b4d2a34d7765259a8Ff5ec65`).
+- Choose option 4 `upgrade` and copy `proxy address` (Our first deployed contract Address: `0xb2ad6367DAC6133C8134B109fE3c451d93915e66`) and `Implementation address` (For JosamTokenV2 from prepare_upgradeV1.V2: `0x4369a69210ca45Ff8198143f60dA3F9f45d4832d`).
 - Click on write, and on MetaMask (Don't validate transaction), copy the `HEX Data` from `HEX tab` somewere.
 - Reject MetaMask Transaction.
 
@@ -250,9 +247,11 @@ JosamTokenV2 upgrade at: 0x6784bd0Ca85B7757b4d2a34d7765259a8Ff5ec65
 - On `Transaction information` leaves at it is.
 - `GOR value` will be `0`.
 - Oon `Contract Method Selector` instead of `schedule`, we are going to choose `execute` to execute the final transaction (To process the upgrade from V1 to V3).
+- Specify `ProxyAdmin Address` on the `Target field`.
 - `value` will be `0`.
 - `payload` will be the `HEX data` copied on earlier stage.
 - For `predecessor` and `salt`, we can give zero address (`0x0000000000000000000000000000000000000000000000000000000000000000`).
 - Click on `Add transaction`.
 - Click on `Create Batch`.
 - Click first on `Simulate` to be sure that all field are properly filled.
+- Click on `Send Batch`.

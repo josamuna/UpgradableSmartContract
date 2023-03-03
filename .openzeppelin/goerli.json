@@ -1,206 +1,20 @@
 {
   "manifestVersion": "3.2",
   "admin": {
-    "address": "0x8b7b7DC5911c3C889E5913A09CCbEdC7C22cdA83",
-    "txHash": "0x3be28730f02bf4fcfe8574ead09c65707bdb01388b271f397dc8864904b8715e"
+    "address": "0x2532ee63244d31a53D0Cc042aF86777A0CbB027e",
+    "txHash": "0x99ab7138ebdd61c24a643dc32cf74c7e0734e63f587e3bd809c96fc671fef3c5"
   },
   "proxies": [
     {
-      "address": "0x8731cC23eB3Fe2bd08Fd64Eecf65bD1e21E6c41E",
-      "txHash": "0xa790838619d253c8b326e928b7407ba023af0911b313f30f8f460a321c6d9c1a",
-      "kind": "transparent"
-    },
-    {
-      "address": "0x4F963F063531C4d51e0fb38e2F4575c0011B339c",
-      "txHash": "0xabef97366ee4fe6ce79d9efa6f27c4c7358b28e46549d3919862bee3c7ef4a10",
-      "kind": "transparent"
-    },
-    {
-      "address": "0x220cF9b775888C996B77b4bb6DCb40C8754FbB31",
-      "txHash": "0xa477f13bfaa22374adf8e87d35a6a0505ae77993753f65063bf46945e7106ca7",
-      "kind": "transparent"
-    },
-    {
-      "address": "0x3f27585a5e0C84bE5D81C08E468325c43A40191b",
-      "txHash": "0xe9387d3892fa6f26048557a362d33298db61b36cb426fd657b8138b9503ef661",
-      "kind": "transparent"
-    },
-    {
-      "address": "0x011f85C35A23429b1b5d266c5eD99E29c6C6b019",
-      "txHash": "0x7cd9aff40371143bd17b6a2335c3c70b8208e811b8102305421f2be2184794df",
+      "address": "0xb2ad6367DAC6133C8134B109fE3c451d93915e66",
+      "txHash": "0xc6d33359e2ec6747f9af3843a622d59aee942c795e0fd4b7f68f8947b1efbd87",
       "kind": "transparent"
     }
   ],
   "impls": {
-    "91391fdc4a11354f0f67b9fcfa6d222c3bdbd1d5b0bcbcf12a84e930837c5aae": {
-      "address": "0xb6EC7B58f3F0120003926bC354DC1c9Cdc3819eb",
-      "txHash": "0x6870f63234569bde2b14c04320018c1be015b33fcf341a749db13d26665a544c",
-      "layout": {
-        "solcVersion": "0.8.6",
-        "storage": [
-          {
-            "label": "_totalSupply",
-            "offset": 0,
-            "slot": "0",
-            "type": "t_uint256",
-            "contract": "JosamToken",
-            "src": "contracts\\JosamTokenV1.sol:6"
-          },
-          {
-            "label": "_name",
-            "offset": 0,
-            "slot": "1",
-            "type": "t_string_storage",
-            "contract": "JosamToken",
-            "src": "contracts\\JosamTokenV1.sol:7"
-          },
-          {
-            "label": "_symbol",
-            "offset": 0,
-            "slot": "2",
-            "type": "t_string_storage",
-            "contract": "JosamToken",
-            "src": "contracts\\JosamTokenV1.sol:8"
-          },
-          {
-            "label": "balances",
-            "offset": 0,
-            "slot": "3",
-            "type": "t_mapping(t_address,t_uint256)",
-            "contract": "JosamToken",
-            "src": "contracts\\JosamTokenV1.sol:9"
-          },
-          {
-            "label": "_owner",
-            "offset": 0,
-            "slot": "4",
-            "type": "t_address_payable",
-            "contract": "JosamToken",
-            "src": "contracts\\JosamTokenV1.sol:10"
-          },
-          {
-            "label": "_initialized",
-            "offset": 20,
-            "slot": "4",
-            "type": "t_bool",
-            "contract": "JosamToken",
-            "src": "contracts\\JosamTokenV1.sol:11"
-          }
-        ],
-        "types": {
-          "t_address": {
-            "label": "address",
-            "numberOfBytes": "20"
-          },
-          "t_address_payable": {
-            "label": "address payable",
-            "numberOfBytes": "20"
-          },
-          "t_bool": {
-            "label": "bool",
-            "numberOfBytes": "1"
-          },
-          "t_mapping(t_address,t_uint256)": {
-            "label": "mapping(address => uint256)",
-            "numberOfBytes": "32"
-          },
-          "t_string_storage": {
-            "label": "string",
-            "numberOfBytes": "32"
-          },
-          "t_uint256": {
-            "label": "uint256",
-            "numberOfBytes": "32"
-          }
-        }
-      }
-    },
-    "c663ab6e161e07a170e132568723efa7c60790e546c24702c09266ff0d917761": {
-      "address": "0x646B16f440923BbaB111be6971aa36bE2d5F0311",
-      "txHash": "0x7496a67dbdff839955c02c102360d2d1ba42c2b63677d91ed64a7c25c6cdd74a",
-      "layout": {
-        "solcVersion": "0.8.6",
-        "storage": [
-          {
-            "label": "_totalSupply",
-            "offset": 0,
-            "slot": "0",
-            "type": "t_uint256",
-            "contract": "JosamToken",
-            "src": "contracts\\JosamTokenV1.sol:6"
-          },
-          {
-            "label": "_name",
-            "offset": 0,
-            "slot": "1",
-            "type": "t_string_storage",
-            "contract": "JosamToken",
-            "src": "contracts\\JosamTokenV1.sol:7"
-          },
-          {
-            "label": "_symbol",
-            "offset": 0,
-            "slot": "2",
-            "type": "t_string_storage",
-            "contract": "JosamToken",
-            "src": "contracts\\JosamTokenV1.sol:8"
-          },
-          {
-            "label": "balances",
-            "offset": 0,
-            "slot": "3",
-            "type": "t_mapping(t_address,t_uint256)",
-            "contract": "JosamToken",
-            "src": "contracts\\JosamTokenV1.sol:9"
-          },
-          {
-            "label": "_owner",
-            "offset": 0,
-            "slot": "4",
-            "type": "t_address_payable",
-            "contract": "JosamToken",
-            "src": "contracts\\JosamTokenV1.sol:10"
-          },
-          {
-            "label": "_initialized",
-            "offset": 20,
-            "slot": "4",
-            "type": "t_bool",
-            "contract": "JosamToken",
-            "src": "contracts\\JosamTokenV1.sol:11"
-          }
-        ],
-        "types": {
-          "t_address": {
-            "label": "address",
-            "numberOfBytes": "20"
-          },
-          "t_address_payable": {
-            "label": "address payable",
-            "numberOfBytes": "20"
-          },
-          "t_bool": {
-            "label": "bool",
-            "numberOfBytes": "1"
-          },
-          "t_mapping(t_address,t_uint256)": {
-            "label": "mapping(address => uint256)",
-            "numberOfBytes": "32"
-          },
-          "t_string_storage": {
-            "label": "string",
-            "numberOfBytes": "32"
-          },
-          "t_uint256": {
-            "label": "uint256",
-            "numberOfBytes": "32"
-          }
-        }
-      }
-    },
     "3e014ff8d77c60201f8bbeec3beaded94e7389a92cafbc60949872c055015e2f": {
-      "address": "0x7B945033c0a137A567F78203fb7537907AAFB487",
-      "txHash": "0x1463a205cf8442a965ea2142dcad1afb5afb269e40bec85254f3a1683baa0bf1",
+      "address": "0x342e79E7AF6b67831Baa74E7e63156F70B50aa88",
+      "txHash": "0x9cca559cea9b6a59ca2eb3a254297f4cc4313367efc235e74ffe1c8cabdb6703",
       "layout": {
         "solcVersion": "0.8.6",
         "storage": [
@@ -270,8 +84,8 @@
       }
     },
     "9797d0315a26d1e93c227c99909874f85d80b2c84a683997009c94a95bf62b4e": {
-      "address": "0x6784bd0Ca85B7757b4d2a34d7765259a8Ff5ec65",
-      "txHash": "0x388112f9b89ff9a5e97ef6b3bca7fcb31c76470405ee2bd3781f57cfdf6ae9c3",
+      "address": "0x4369a69210ca45Ff8198143f60dA3F9f45d4832d",
+      "txHash": "0x904bc290208160ca817cd133817827a3e6118ded49c43e69f1a029d1a7f0bee8",
       "layout": {
         "solcVersion": "0.8.6",
         "storage": [
