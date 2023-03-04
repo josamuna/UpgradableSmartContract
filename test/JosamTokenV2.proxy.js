@@ -33,9 +33,6 @@ describe("Test ERC20 Josam Token proxy version 2.", function () {
     const tokenSymbol = "JTK";
     const decimals = 18;
 
-    // Initialize the contract instead of using constroctor (To follow Openzeppelin Pattern)
-    // await josamtokenV2.initialize("Josam Token", "JTK");
-
     let result = await josamtokenV2.totalSupply(); // Get the totalSupply from contract.
     expect(result).to.equal(totalSupply);
     result = await josamtokenV2.name(); // Get the Token Name.

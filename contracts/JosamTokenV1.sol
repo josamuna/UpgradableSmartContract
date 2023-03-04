@@ -9,17 +9,17 @@ contract JosamToken {
     mapping(address => uint256) balances;
     bool private _initialized;
 
-    // Create constructor by passing Token name and Symbol, then pre-mint 1 000 000 Tokens
+    // Create constructor by passing Token name and Symbol, then pre-mint 1 000 000 Tokens.
     // constructor() {
     //     _name = "Josam Token";
     //     _symbol = "JTK";
-    //     _owner = payable(msg.sender); // The owner of the contract
+    //     _owner = payable(msg.sender); // The owner of the contract.
 
     //     _totalSupply += 1000000;
     //     balances[_owner] += 1000000; // Update the balance of the owner.
     // }
 
-    // To follow Openzeppelin pattern, instead of using constructor, we are going to use function initializer
+    // To follow Openzeppelin pattern, instead of using constructor, we are going to use function initializer.
     function initialize(string memory _tName, string memory _tSymbol) public {
         require(!_initialized, "Contract instance has already initialized.");
         _name = _tName;

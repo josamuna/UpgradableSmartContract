@@ -255,3 +255,28 @@ JosamTokenV2 upgrade at: 0x4369a69210ca45Ff8198143f60dA3F9f45d4832d
 - Click on `Create Batch`.
 - Click first on `Simulate` to be sure that all field are properly filled.
 - Click on `Send Batch`.
+
+> Till Here, the execute transaction to finalize the upgrade was failed. So I wasn't able to `Read as Proxy` and `Write as Proxy` for V2.
+
+9. Use the `Proxy Contract Address` (**0xb2ad6367DAC6133C8134B109fE3c451d93915e66**) on Etherscan (On `Contract Tab`) to be able to `Read as Proxy` and `Write as Proxy` to verify that the contract was upgraded successfully.
+
+## Step 4: Phase 3
+
+---
+
+1. Write `version 3` of the contract `JosamTokenV3` with `onlyOwner` behavior and `custom ReentrancyGuard` behavior also.
+2. Write test cases for `JosamTokenV3` (Including `JosamTokenV3.proxy`) and run them with this command.
+
+```
+npx hardhat test
+```
+
+3. Write te `prepare_upgradeV2.V3.js` script file and run it to upgrade from `V2` to `V3`, and run it also:
+
+```
+npx hardhat run scripts/prepare_upgradeV2.V3.js --network goerli
+```
+
+The final address should be the `Implementation address of V3`.
+
+4. Then we can proceed we the previous steps (**Step3 : Phase 2: From 5 to 9**) to finally upgrade `JosamTokenV2` to `JosamTokenV3`.
