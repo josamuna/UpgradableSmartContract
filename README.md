@@ -54,7 +54,7 @@ npm install @openzeppelin/hardhat-upgrades @nomiclabs/hardhat-etherscan @openzep
   - [Infura API key]("https://www.infura.io/").
   - [Etherscan API key]("https://etherscan.io/apis").
   - Wallet private key (From MetaMask Goerli account).
-    Thess three parameters will be specified inside the `secrets.json` file like that:
+    These three parameters will be specified inside the `secrets.json` (This file should be created to the root of the project) file like that:
 
 ```
 {

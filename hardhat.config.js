@@ -6,7 +6,6 @@ const { alchemyAPIKeyGoerli } = require("./secrets.json");
 const { etherscanAPIKey } = require("./secrets.json");
 const { deployerWalletPrivateKey } = require("./secrets.json");
 
-/** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: "0.8.6",
   settings: {
