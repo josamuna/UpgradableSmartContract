@@ -93,7 +93,7 @@ npx hardhat run scripts/deploy.js --network goerli
 
 > This ProxyAddress will keep track of state variables and help to separate state (Proxy Contract) from the logic (Implementation Contract): **Link the Proxy with Implementation**.
 
-6. We can proceed with the verification contract using the deployed address directly from [goerli ethercan](https://goerli.etherscan.io/). For this project, the full link with address was [this](https://goerli.etherscan.io/address/0xb2ad6367DAC6133C8134B109fE3c451d93915e66).
+6. We can proceed with the verification contract using the deployed address directly from [goerli ethercan](https://goerli.etherscan.io/). For this project, the full link with address was [this](https://goerli.etherscan.io/address/0x62Ecc819e15c7d5ef471E3356FdaF9Da52C591C7).
 
 - Navigate to **contract tab**.
 - Chooce **More Options**.
@@ -101,28 +101,29 @@ npx hardhat run scripts/deploy.js --network goerli
 - Click on **Verify**.
 - Copy the **Implementation address** and save it inside the `addresses.json file` (`proxyAddress`).
 
-**If the verification failed, we can use this command (This was the case and this test was made later, after setting up ProxyAdmin)**:
+**If the verification failed, we can use this command (This was the case)**:
 
 ```
-npx hardhat verify --network goerli 0xb2ad6367DAC6133C8134B109fE3c451d93915e66
+npx hardhat verify --network goerli 0x62Ecc819e15c7d5ef471E3356FdaF9Da52C591C7
 ```
 
 The result will look like:
 
 ```
-Verifying implementation: 0x342e79E7AF6b67831Baa74E7e63156F70B50aa88
+Verifying implementation: 0xf6486485Fc8CEB4a5914e1516FcbE5E162C4eEe1
 Nothing to compile
 Successfully submitted source code for contract
-contracts/JosamTokenV1.sol:JosamToken at 0x342e79E7AF6b67831Baa74E7e63156F70B50aa88
+contracts/JosamTokenV1.sol:JosamToken at 0xf6486485Fc8CEB4a5914e1516FcbE5E162C4eEe1
 for verification on the block explorer. Waiting for verification result...
 
-Implementation 0x342e79E7AF6b67831Baa74E7e63156F70B50aa88 already verified.
-Verifying proxy: 0xb2ad6367DAC6133C8134B109fE3c451d93915e66
-Contract at 0xb2ad6367DAC6133C8134B109fE3c451d93915e66 already verified.
-Linking proxy 0xb2ad6367DAC6133C8134B109fE3c451d93915e66 with implementation
+Successfully verified contract JosamToken on Etherscan.
+https://goerli.etherscan.io/address/0xf6486485Fc8CEB4a5914e1516FcbE5E162C4eEe1#code
+Verifying proxy: 0x62Ecc819e15c7d5ef471E3356FdaF9Da52C591C7
+Contract at 0x62Ecc819e15c7d5ef471E3356FdaF9Da52C591C7 already verified.
+Linking proxy 0x62Ecc819e15c7d5ef471E3356FdaF9Da52C591C7 with implementation
 Successfully linked proxy to implementation.
-Verifying proxy admin: 0x2532ee63244d31a53D0Cc042aF86777A0CbB027e
-Contract at 0x2532ee63244d31a53D0Cc042aF86777A0CbB027e already verified.
+Verifying proxy admin: 0x609BB601d0130697DfbFB43e03484473EF04b151
+Contract at 0x609BB601d0130697DfbFB43e03484473EF04b151 already verified.
 
 Proxy fully verified.
 ```
@@ -142,21 +143,30 @@ Proxy fully verified.
 npx hardhat run scripts/deploy-timelock.js --network goerli
 ```
 
+The result will look like this:
+
+```
+Compiled 11 Solidity files successfully
+Deploying contract with the account: 0x383ed93db019c2B371AFD70fA49b0B55f836ECdE
+Account balance: 1276545331521920582
+Timelock contract deployed on address: 0x66b251eaC8E7E567165C676e612F334af65E8819
+```
+
 12. Verify that the Timelock contract has deployed successfully by typing this command:
 
 ```
-npx hardhat verify --network goerli --constructor-args arguments.js 0xea44fafc675d1890c5A978b2b4A3303F08A97883
+npx hardhat verify --network goerli --constructor-args arguments.js 0x66b251eaC8E7E567165C676e612F334af65E8819
 ```
 
 Result will look like this:
 
 ```
 Successfully submitted source code for contract
-contracts/Timelock.sol:TimelockController at 0xea44fafc675d1890c5A978b2b4A3303F08A97883
+contracts/Timelock.sol:TimelockController at 0x66b251eaC8E7E567165C676e612F334af65E8819
 for verification on the block explorer. Waiting for verification result...
 
 Successfully verified contract TimelockController on Etherscan.
-https://goerli.etherscan.io/address/0xea44fafc675d1890c5A978b2b4A3303F08A97883#code
+https://goerli.etherscan.io/address/0x66b251eaC8E7E567165C676e612F334af65E8819#code
 ```
 
 13. inside `.openzeppelin/goerli.json` file, copy the `Admin address` inside the `addresses.json file` as `ProxyAdmin`.
@@ -170,8 +180,8 @@ The result will look like this:
 
 ```
 Transferring ownership of ProxyAdmin
-✔ 0xb2ad6367DAC6133C8134B109fE3c451d93915e66 (transparent) proxy ownership transfered through admin proxy
-Transferred ownership of ProxiAdmin to: 0xea44fafc675d1890c5A978b2b4A3303F08A97883
+✔ 0x62Ecc819e15c7d5ef471E3356FdaF9Da52C591C7 (transparent) proxy ownership transfered through admin proxy
+Transferred ownership of ProxiAdmin to: 0x66b251eaC8E7E567165C676e612F334af65E8819
 ```
 
 > Now, the `Timelock Contract` is the new owner.
@@ -193,7 +203,7 @@ npx hardhat compile
 npx hardhat test
 ```
 
-> All tests shoul passed to go forward.
+> All tests should passed to go forward.
 
 4. Prepare the upgrade by writting a new script file: `prepare_upgradeV1.V2.js` (**The propose part** of the upgration, and **The execution part** will be done at the next step.):
 
@@ -205,15 +215,17 @@ The result will look like this (Then copy this deployed address on **addresses.j
 
 ```
 Preparing upgrade...
-JosamTokenV2 upgrade at: 0x4369a69210ca45Ff8198143f60dA3F9f45d4832d
+JosamTokenV2 upgrade at: 0xA26c47Dd9D6a6C0D6Ac59F7d7003E32C0974cCF5
 
 ```
+
+> This address will be the `Implementation Address` of the `JosamTokenV2 Contract`.
 
 5. Getting Hexadecimal Data.
 
 - Use the `ProxyAdminAddress` from earlier `Timelock` creation on [Goerli Ethercan](https://goerli.etherscan.io/).
 - Go to Contract tab, and connect MetaMask wallet.
-- Choose option 4 `upgrade` and copy `proxy address` (Our first deployed contract Address: `0xb2ad6367DAC6133C8134B109fE3c451d93915e66`) and `Implementation address` (For JosamTokenV2 from prepare_upgradeV1.V2: `0x4369a69210ca45Ff8198143f60dA3F9f45d4832d`).
+- Choose option 4 `upgrade` and copy `proxy address` (Our first deployed contract Address: `0x62Ecc819e15c7d5ef471E3356FdaF9Da52C591C7`) and `Implementation address` (For JosamTokenV2 from prepare_upgradeV1.V2: `0xA26c47Dd9D6a6C0D6Ac59F7d7003E32C0974cCF5`).
 - Click on write, and on MetaMask (Don't validate transaction), copy the `HEX Data` from `HEX tab` somewere.
 - Reject MetaMask Transaction.
 
@@ -256,9 +268,32 @@ JosamTokenV2 upgrade at: 0x4369a69210ca45Ff8198143f60dA3F9f45d4832d
 - Click first on `Simulate` to be sure that all field are properly filled.
 - Click on `Send Batch`.
 
-> Till Here, the execute transaction to finalize the upgrade was failed. So I wasn't able to `Read as Proxy` and `Write as Proxy` for V2.
+9. Gnosis success Transactions (`Schedule` and `Execute`) of V1 to V2.
 
-9. Use the `Proxy Contract Address` (**0xb2ad6367DAC6133C8134B109fE3c451d93915e66**) on Etherscan (On `Contract Tab`) to be able to `Read as Proxy` and `Write as Proxy` to verify that the contract was upgraded successfully.
+![JosamTokenV1 to JosamTokenV2](https://user-images.githubusercontent.com/15903230/222914157-42c4f31a-841d-4fdc-96ec-9b06e5306117.png)
+
+10. Use the `Proxy Contract Address` (**0x62Ecc819e15c7d5ef471E3356FdaF9Da52C591C7**) on Etherscan (On `Contract Tab`) to be able to `Read as Proxy` and `Write as Proxy` to verify that the contract was upgraded successfully.
+11. Then to be able to use the feature of the current contract version (`JosamTokenV2`), a verification should be require, do that by using **the last Contract implementation Address** (`0xA26c47Dd9D6a6C0D6Ac59F7d7003E32C0974cCF5`) with this command:
+
+```
+npx hardhat verify --network goerli 0xa26c47dd9d6a6c0d6ac59f7d7003e32c0974ccf5
+```
+
+The result will look like this:
+
+```
+Nothing to compile
+Successfully submitted source code for contract
+contracts/JosamTokenV2.sol:JosamTokenV2 at 0xa26c47dd9d6a6c0d6ac59f7d7003e32c0974ccf5
+for verification on the block explorer. Waiting for verification result...
+
+Successfully verified contract JosamTokenV2 on Etherscan.
+https://goerli.etherscan.io/address/0xa26c47dd9d6a6c0d6ac59f7d7003e32c0974ccf5#code
+```
+
+12. JosamTokenV2 upgraded implementation on Etherscan
+
+![JosamTokenV1 to JosamTokenV2 upgraded on Etherscan Goerli](https://user-images.githubusercontent.com/15903230/222914395-6af1c7c7-e614-43da-992f-ffba1aef0e60.png)
 
 ## Step 4: Phase 3
 
@@ -277,6 +312,42 @@ npx hardhat test
 npx hardhat run scripts/prepare_upgradeV2.V3.js --network goerli
 ```
 
-The final address should be the `Implementation address of V3`.
+The result will look like this:
 
-4. Then we can proceed we the previous steps (**Step3 : Phase 2: From 5 to 9**) to finally upgrade `JosamTokenV2` to `JosamTokenV3`.
+```
+Preparing upgrade...
+JosamTokenV3 upgrade at: 0xd057a43029B1f4097450D10edaCFAe6A04e4E8Fb
+```
+
+The new address will be the new `Implementation Address` of the Contract (`JosamTokenV3`). We are going to coy it inside the `addresses.json`.
+
+4. Then we can proceed with the previous steps (**Step3 : Phase 2: From 5 to 9**) by using address of `latest contract implementation` and the new `HEX Data`.
+
+5. Gnosis success Transactions (`Schedule` and `Execute`) of upgrade from V2 to V3.
+
+![JosamTokenV2 to JosamTokenV3](https://user-images.githubusercontent.com/15903230/222914545-b4067db9-ed06-4321-9c32-04273f705b60.png)
+
+6. Use the `Proxy Contract Address` (**0x62Ecc819e15c7d5ef471E3356FdaF9Da52C591C7**) on Etherscan (On `Contract Tab`) to be able to `Read as Proxy` and `Write as Proxy` to verify that the final (`JosamTokenV3`) has upgraded successfully.
+7. Then to be able to use the feature of this final contract version (`JosamTokenV3`), a verification should be require, do that by using **the last Contract implementation Address** (`0xd057a43029B1f4097450D10edaCFAe6A04e4E8Fb`) with this command:
+
+```
+npx hardhat verify --network goerli 0xd057a43029B1f4097450D10edaCFAe6A04e4E8Fb
+```
+
+The result will look like this:
+
+```
+Nothing to compile
+Successfully submitted source code for contract
+contracts/JosamTokenV3.sol:JosamTokenV3 at 0xd057a43029B1f4097450D10edaCFAe6A04e4E8Fb
+for verification on the block explorer. Waiting for verification result...
+
+Successfully verified contract JosamTokenV3 on Etherscan.
+https://goerli.etherscan.io/address/0xd057a43029B1f4097450D10edaCFAe6A04e4E8Fb#code
+```
+
+8. JosamTokenV3 upgraded implementation on Etherscan
+
+![JosamTokenV2 to JosamTokenV3 upgraded on Etherscan Goerli](https://user-images.githubusercontent.com/15903230/222914580-4dfabbbe-14ab-4c6a-93c4-4bb453697146.png)
+
+9. With that, the upgrade of `JosamTokenV1` to `JosamTokenV2` then to `JosamTokenV3` is done successfully with all features inside final Contract version (**Custom ERC20 Token with custom Reentrancy guard behavior**).
